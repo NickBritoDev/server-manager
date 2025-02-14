@@ -40,7 +40,7 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
             stream.close();
             sshClient.end();
             res.json({ logs: logsCaptured.join('\n') });
-          }, 60000);
+          }, 5000);
 
           stream.on('data', (data: Buffer) => {
             const log = data.toString();
