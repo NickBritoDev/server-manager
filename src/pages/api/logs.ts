@@ -14,7 +14,6 @@ const PRIVATE_KEY = "-----BEGIN RSA PRIVATE KEY-----\nMIIEowIBAAKCAQEAtelTLk8gyM
 export default function handler(req: NextApiRequest, res: NextApiResponse) {
   if (req.method === 'GET') {
     const { pm2Id, host, port, user } = req.query as unknown as LogsRequestBody;
-
     if (!pm2Id) {
       return res.status(400).json({ message: 'ID do PM2 não fornecido.' });
     }
