@@ -3,8 +3,16 @@ import { NextApiRequest, NextApiResponse } from 'next';
 import { Client } from 'ssh2';
 import fs from 'fs';
 
+interface ListRequestBody {
+  host: string;
+  user: string;
+  port: number;
+}
+
 export default function handler(req: NextApiRequest, res: NextApiResponse) {
   if (req.method === 'GET') {
+    const { host, port, user } = req.query as unknown as ListRequestBody;
+
     res.setHeader('Content-Type', 'application/json');
     res.setHeader('Cache-Control', 'no-cache');
     res.setHeader('Connection', 'keep-alive');
@@ -47,9 +55,9 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
         res.end();
       })
       .connect({
-        host: '54.232.67.141',
-        port: 2220,
-        username: 'ubuntu',
+        host: host,
+        port: Number(port),
+        username: user,
         privateKey: fs.readFileSync('SRVGMVBDB.ppk'),
       });
   } else {

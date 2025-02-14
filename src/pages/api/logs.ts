@@ -3,9 +3,16 @@ import { NextApiRequest, NextApiResponse } from 'next';
 import { Client } from 'ssh2';
 import fs from 'fs';
 
+interface LogsRequestBody {
+  pm2Id: string;
+  host: string;
+  user: string;
+  port: number;
+}
+
 export default function handler(req: NextApiRequest, res: NextApiResponse) {
   if (req.method === 'GET') {
-    const { pm2Id } = req.query;
+    const { pm2Id, host, port, user } = req.query as unknown as LogsRequestBody;
 
     if (!pm2Id) {
       return res.status(400).json({ message: 'ID do PM2 não fornecido.' });
@@ -60,9 +67,9 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
         res.end();
       })
       .connect({
-        host: '54.232.67.141',
-        port: 2220,
-        username: 'ubuntu',
+        host: host,
+        port: Number(port),
+        username: user,
         privateKey: fs.readFileSync('SRVGMVBDB.ppk'),
       });
   } else {
