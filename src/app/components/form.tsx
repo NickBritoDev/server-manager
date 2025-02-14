@@ -5,7 +5,7 @@ import ListComponent from './list';
 
 export default function FormComponent({ pm2Id, setPm2Id, pm2List, handleGetPm2List, loadingList }: any) {
   return (
-    <form style={{ width: '98%', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '2px' }} onSubmit={(e) => e.preventDefault()}>
+    <form style={{ width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '2px', paddingInline: '12px' }} onSubmit={(e) => e.preventDefault()}>
       <Stack w={'100%'} gap="10">
         <Group attached>
           <InputAddon p={2}><LuServerCog size={22} /></InputAddon>

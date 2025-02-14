@@ -12,7 +12,7 @@ export default function LogsComponent({ logs, setLogs, setMessage, setPm2Id, pm2
             setMessage("")
             setPm2Id("")
           }} p={1} borderBottom={'solid'}>
-            <IoMdCloseCircle color='red' />
+            <IoMdCloseCircle size={22} color='red' />
           </Flex>
           <Flex h={'80vh'} overflowY={'scroll'} flexDir={'column'} px={1}>
             {logs

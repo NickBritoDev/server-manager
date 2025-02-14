@@ -1,5 +1,4 @@
 /* eslint-disable react-hooks/rules-of-hooks */
-
 'use client'
 import { Flex, Heading, Group, Input, InputAddon, Stack, Button } from '@chakra-ui/react';
 import { useState, useEffect } from 'react';
@@ -13,6 +12,7 @@ import { MdOutlineVpnKey } from 'react-icons/md';
 import { RiDoorLockBoxLine } from 'react-icons/ri';
 import { FaUserShield } from 'react-icons/fa';
 import { toaster } from "@/components/ui/toaster"
+import { useGetPm2List } from './hooks/useGetPm2List';
 
 export default function Home() {
   const [pm2Id, setPm2Id] = useState<string>('');
@@ -27,7 +27,6 @@ export default function Home() {
   const [pm2List, setPm2List] = useState<string>('');
 
   const isButtonDisabled = !host || !port || !user;
-
 
   useEffect(() => {
     const storedHost = localStorage.getItem('host');
@@ -68,33 +67,12 @@ export default function Home() {
     useGetLogs(pm2Id, setMessage, setLogs, setIsLoading);
   };
 
-  const handleGetPm2List = async () => {
-    const host = localStorage.getItem('host');
-    const port = localStorage.getItem('port');
-    const user = localStorage.getItem('user');
-
-    if (!host || !port || !user) {
-      toaster.create({ title: "Erro: Credenciais SSH não encontradas", type: "error" });
-      return;
-    }
-
-    setLoadingList(true);
-
-    try {
-      const response = await fetch(`/api/list?host=${host}&port=${port}&user=${user}`);
-      const data = await response.json();
-      setPm2List(data.processes);
-    } catch (error) {
-      console.error("Erro ao obter lista de PM2:", error);
-      toaster.create({ title: "Erro ao obter lista de PM2", type: "error" });
-    } finally {
-      setLoadingList(false);
-    }
+  const handleGetPm2List = () => {
+    useGetPm2List(toaster, setLoadingList, setPm2List);
   };
 
-
   return (
-    <Flex flexDir="column" alignItems="center" w="100%">
+    <Flex overflowX={'hidden'} ml={-1} flexDir="column" alignItems="center" justifyContent={'center'} w="100%">
       <Heading my={4}>Gerenciador de Servidor</Heading>
 
       {!access ? (

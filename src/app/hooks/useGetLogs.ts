@@ -2,6 +2,7 @@
 const formatLogs = (logs: string) => { return logs.replace(/(,)/g, '\n'); };
 
 export const useGetLogs = async (pm2Id: string, setMessage: any, setLogs: any, setIsLoading: any) => {
+  setIsLoading(true);
   const host = localStorage.getItem('host');
   const port = localStorage.getItem('port');
   const user = localStorage.getItem('user');
@@ -11,8 +12,7 @@ export const useGetLogs = async (pm2Id: string, setMessage: any, setLogs: any, s
     return;
   }
 
-  setIsLoading(true);
-  setMessage('Capturando logs... Esse processo leva exatamente 1 min!');
+  setMessage('Capturando logs...');
 
   const res = await fetch(`/api/logs?pm2Id=${pm2Id}&host=${host}&port=${port}&user=${user}`);
 

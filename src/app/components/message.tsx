@@ -12,8 +12,11 @@ export default function MessageComponent({ setLogs, setMessage, setPm2Id, messag
             setMessage("")
             setPm2Id("")
           }} p={1} borderBottom={'solid'}>
-            <IoMdCloseCircle color='red' />
-            <Spinner color={"orange"} display={isLoading ? 'flex' : 'none'} />
+            <IoMdCloseCircle size={22} color='red' />
+            <Flex display={isLoading ? 'flex' : 'none'} gap={2}>
+              <Text>Atualizando...</Text>
+              <Spinner color={'orange'} />
+            </Flex>
           </Flex>
           <Text color={'green'} p={1} >{message}</Text>
         </Flex>
