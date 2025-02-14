@@ -1,7 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { NextApiRequest, NextApiResponse } from 'next';
 import { Client } from 'ssh2';
-import fs from 'fs';
 
 interface LogsRequestBody {
   pm2Id: string;
