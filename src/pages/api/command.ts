@@ -1,6 +1,6 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 import { Client } from 'ssh2';
-import { RestartRequestBody } from '../types/command';
+import { RestartRequestBody } from './types/command';
 
 export default function handler(req: NextApiRequest, res: NextApiResponse) {
   if (req.method === 'POST') {

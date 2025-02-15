@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { NextApiRequest, NextApiResponse } from 'next';
 import { Client } from 'ssh2';
-import { LogsRequestQuery } from '../types/logs';
+import { LogsRequestQuery } from './types/logs';
 
 export default function handler(req: NextApiRequest, res: NextApiResponse) {
   if (req.method === 'GET') {
