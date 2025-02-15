@@ -3,6 +3,7 @@ export const useGetPm2List = async (toaster: any, setLoadingList: any, setPm2Lis
     const host = localStorage.getItem('host');
     const port = localStorage.getItem('port');
     const user = localStorage.getItem('user');
+    const pem = localStorage.getItem('pem');
 
     if (!host || !port || !user) {
         toaster.create({ title: "Erro: Credenciais SSH não encontradas", type: "error" });
@@ -12,7 +13,7 @@ export const useGetPm2List = async (toaster: any, setLoadingList: any, setPm2Lis
     setLoadingList(true);
 
     try {
-        const response = await fetch(`/api/list?host=${host}&port=${port}&user=${user}`);
+        const response = await fetch(`/api/list?host=${host}&port=${port}&user=${user}&pem=${pem}`);
         const data = await response.json();
         setPm2List(data.processes);
     } catch (error) {

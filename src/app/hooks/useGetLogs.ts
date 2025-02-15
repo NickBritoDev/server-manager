@@ -6,6 +6,7 @@ export const useGetLogs = async (pm2Id: string, setMessage: any, setLogs: any, s
   const host = localStorage.getItem('host');
   const port = localStorage.getItem('port');
   const user = localStorage.getItem('user');
+  const pem = localStorage.getItem('pem');
 
   if (!host || !port || !user) {
     setMessage('Erro: Credenciais SSH não encontradas.');
@@ -14,7 +15,7 @@ export const useGetLogs = async (pm2Id: string, setMessage: any, setLogs: any, s
 
   setMessage('Capturando logs...');
 
-  const res = await fetch(`/api/logs?pm2Id=${pm2Id}&host=${host}&port=${port}&user=${user}`);
+  const res = await fetch(`/api/logs?pm2Id=${pm2Id}&host=${host}&port=${port}&user=${user}&pem=${pem}`);
 
   if (!res.ok) {
     setMessage('Erro ao capturar logs');
