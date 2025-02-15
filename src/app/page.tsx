@@ -25,10 +25,11 @@ export default function Home() {
   const [loadingList, setLoadingList] = useState<boolean>(false);
   const [access, setAccess] = useState<boolean>(false);
   const [pm2List, setPm2List] = useState<string>('');
-  const storedHost = localStorage?.getItem('host');
-  const storedPort = localStorage?.getItem('port');
-  const storedUser = localStorage?.getItem('user');
-  const storedPem = localStorage?.getItem('pem');
+
+  const storedHost = typeof window !== 'undefined' ? localStorage.getItem('host') : null;
+  const storedPort = typeof window !== 'undefined' ? localStorage.getItem('port') : null;
+  const storedUser = typeof window !== 'undefined' ? localStorage.getItem('user') : null;
+  const storedPem = typeof window !== 'undefined' ? localStorage.getItem('pem') : null;
 
   const isButtonDisabled = !host || !port || !user;
 
@@ -41,10 +42,12 @@ export default function Home() {
   const handleAccessManager = () => {
     if (host !== "" && port !== "" && user !== "" && pem !== "") {
       console.log(pem, 'formato que esta sendo salvo')
-      localStorage?.setItem('host', host);
-      localStorage?.setItem('port', port);
-      localStorage?.setItem('user', user);
-      localStorage?.setItem('pem', btoa(pem));
+      if (typeof window !== 'undefined') {
+        localStorage.setItem('host', host);
+        localStorage.setItem('port', port);
+        localStorage.setItem('user', user);
+        localStorage.setItem('pem', btoa(pem));
+      }
       setAccess(true);
       toaster.create({ title: "Acesso permitido", type: "success" });
     } else {
@@ -66,22 +69,20 @@ export default function Home() {
 
   return (
     <Flex overflowX={'hidden'} ml={-1} flexDir="column" alignItems="center" justifyContent={'center'} w="100%">
-      <NavComponent storedHost={storedHost} setAccess={setAccess}/>
+      <NavComponent storedHost={storedHost} setAccess={setAccess} />
 
       {!access ?
         (
-          <>
-            <CredenciaisComponent
-              host={host}
-              setHost={setHost}
-              port={port}
-              setPort={setPort}
-              user={user}
-              setUser={setUser}
-              pem={pem}
-              setPem={setPem}
-              handleAccessManager={handleAccessManager} />
-          </>
+          <CredenciaisComponent
+            host={host}
+            setHost={setHost}
+            port={port}
+            setPort={setPort}
+            user={user}
+            setUser={setUser}
+            pem={pem}
+            setPem={setPem}
+            handleAccessManager={handleAccessManager} />
         ) : (
           <>
             <FormComponent
@@ -113,7 +114,6 @@ export default function Home() {
               setMessage={setMessage}
               setPm2Id={setPm2Id}
             />
-
           </>
         )}
     </Flex>
