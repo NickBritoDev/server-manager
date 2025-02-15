@@ -1,9 +1,9 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 export const useGetPm2List = async (toaster: any, setLoadingList: any, setPm2List: any) => {
-    const host = localStorage.getItem('host');
-    const port = localStorage.getItem('port');
-    const user = localStorage.getItem('user');
-    const pem = localStorage.getItem('pem');
+    const host = localStorage?.getItem('host');
+    const port = localStorage?.getItem('port');
+    const user = localStorage?.getItem('user');
+    const pem = localStorage?.getItem('pem');
 
     if (!host || !port || !user) {
         toaster.create({ title: "Erro: Credenciais SSH não encontradas", type: "error" });

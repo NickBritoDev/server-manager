@@ -25,10 +25,10 @@ export default function Home() {
   const [loadingList, setLoadingList] = useState<boolean>(false);
   const [access, setAccess] = useState<boolean>(false);
   const [pm2List, setPm2List] = useState<string>('');
-  const storedHost = localStorage.getItem('host');
-  const storedPort = localStorage.getItem('port');
-  const storedUser = localStorage.getItem('user');
-  const storedPem = localStorage.getItem('pem');
+  const storedHost = localStorage?.getItem('host');
+  const storedPort = localStorage?.getItem('port');
+  const storedUser = localStorage?.getItem('user');
+  const storedPem = localStorage?.getItem('pem');
 
   const isButtonDisabled = !host || !port || !user;
 
@@ -41,10 +41,10 @@ export default function Home() {
   const handleAccessManager = () => {
     if (host !== "" && port !== "" && user !== "" && pem !== "") {
       console.log(pem, 'formato que esta sendo salvo')
-      localStorage.setItem('host', host);
-      localStorage.setItem('port', port);
-      localStorage.setItem('user', user);
-      localStorage.setItem('pem', btoa(pem));
+      localStorage?.setItem('host', host);
+      localStorage?.setItem('port', port);
+      localStorage?.setItem('user', user);
+      localStorage?.setItem('pem', btoa(pem));
       setAccess(true);
       toaster.create({ title: "Acesso permitido", type: "success" });
     } else {

@@ -13,10 +13,10 @@ export default function NavComponent({ storedHost, setAccess }: any) {
         <Text fontWeight={'semibold'}>{storedHost}</Text>
         <Button
           onClick={() => {
-            localStorage.removeItem("pem")
-            localStorage.removeItem("host")
-            localStorage.removeItem("user")
-            localStorage.removeItem("port")
+            localStorage?.removeItem("pem")
+            localStorage?.removeItem("host")
+            localStorage?.removeItem("user")
+            localStorage?.removeItem("port")
             setAccess(false)
           }}
           bg={'red'}><IoIosLogOut color='white' size={22} /></Button>
