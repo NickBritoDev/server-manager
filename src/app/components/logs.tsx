@@ -6,7 +6,7 @@ export default function LogsComponent({ logs, setLogs, setMessage, setPm2Id, pm2
   return (
     <>
       {logs && (
-        <Flex bg={'black'} border={'solid white'} color={'white'} rounded={'lg'} pos={'fixed'} top={10} mt={4} w={'99%'} flexDir="column" >
+        <Flex bg={'black'} border={'solid white'} color={'white'} rounded={'lg'} pos={'fixed'} bottom={0} top={10} mt={4} w={'100%'} left={0} flexDir="column" >
           <Flex cursor={'pointer'} onClick={() => {
             setLogs("")
             setMessage("")

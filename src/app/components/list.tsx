@@ -49,10 +49,10 @@ export default function ListComponent({ pm2List, handleGetPm2List, loadingList }
             </Flex>
           )}
 
-          <Stack mt={10} ml={1} w={'99%'} >
-            <Group attached>
+          <Stack mt={10} display={"flex"} alignItems={"center"} justifyContent={"center"} w={'100%'}>
+            <Group w={'99%'} attached>
               <InputAddon p={2}><BsSearch size={22} /></InputAddon>
-              <Input
+              <Input w={'100%'}
                 placeholder="Pesquisar por processo..."
                 value={searchTerm}
                 onChange={handleSearchChange}
@@ -63,7 +63,7 @@ export default function ListComponent({ pm2List, handleGetPm2List, loadingList }
 
 
           {filteredProcesses.length > 0 ? (
-            <Flex p={2} w={'100%'} flexDir={'column'} mt={4}>
+            <Flex p={1} w={'100%'} flexDir={'column'} mt={4}>
               {filteredProcesses.map((process: string, index: number) => (
                 <Box key={index} mt={2} p={4} borderWidth={1} borderRadius="md" boxShadow="sm">
                   <Text fontSize="sm" color="gray.400">
